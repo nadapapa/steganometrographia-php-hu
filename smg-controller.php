@@ -28,18 +28,19 @@ if (isset($sor)) { // ha random verset kell generálni
   echo $genVers;
 
 } elseif (isset($vers)) { // ha verset kell dekódolni
-  echo "dekódol";
+  $vers = strtoupper($vers);
+  $vers = preg_replace('/\PL/u', '', $vers);
+  $uzenet = "";
+  foreach ($tabellak as $key => $tabella) {
+    foreach ($tabella as $betu => $sor) {
+      $sor = strtoupper($sor);
+      $sor = preg_replace('/\PL/u', '', $sor);
+      if (is_int(strpos($vers, $sor))) {
+        echo $betu;
+      }
+
+    }
+  }
 }
 
-
-
-
-// //
-// if (isset($_POST)) {
-//   $post = explode('&', $_POST['form']);
-//   foreach ($i as $value) {
-//     $post = explode('=', $value);
-//   }
-// }
-// print_r($post);
 ?>
